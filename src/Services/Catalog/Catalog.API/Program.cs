@@ -7,14 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddCarter();
-var assemlby = typeof(Program).Assembly;
+var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>{
-    config.RegisterServicesFromAssembly(assemlby);
+    config.RegisterServicesFromAssembly(assembly);
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
-builder.Services.AddValidatorsFromAssembly(assemlby);
+builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddMarten(opts=>
 {
